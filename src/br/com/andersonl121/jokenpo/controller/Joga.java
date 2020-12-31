@@ -31,8 +31,18 @@ public final class Joga {
         Joga.jogada = gerarJogadaAleatoria();
     }
     
-    public void Jogar(){
-        Jogo.getRodadas().get(Jogo.getRodadas().size()-1);
+    public JogadaEnum Jogar(){
+        
+        if(Jogo.getJogador1().equals(Joga.jogador)){
+            Jogo.getRodadas().get(Jogo.getRodadas().size()-1).setJogada1(jogada);
+        }
+        
+        if(Jogo.getJogador2().equals(Joga.jogador)){
+            Jogo.getRodadas().get(Jogo.getRodadas().size()-1).setJogada2(jogada);
+        }
+        
+        return jogada;
+        
     }
 
     public JogadaEnum gerarJogadaAleatoria() {

@@ -5,7 +5,7 @@
  */
 package br.com.andersonl121.jokenpo.view;
 
-import br.com.andersonl121.jokenpo.controller.CalcularGanhadorRodada;
+import br.com.andersonl121.jokenpo.controller.CalculoGanhadorRodada;
 import br.com.andersonl121.jokenpo.controller.Joga;
 import br.com.andersonl121.jokenpo.model.JogadaEnum;
 import br.com.andersonl121.jokenpo.model.Jogo;
@@ -30,9 +30,10 @@ public class Jogadas extends javax.swing.JFrame {
 
         initComponents();
         this.jogo = jogo;
-        jLabelJogador1.setText(jogo.getJogador1().getNome());
-        jLabelJogador2.setText(jogo.getJogador2().getNome());
+        jLabelJogador1.setText(Jogo.getJogador1().getNome());
+        jLabelJogador2.setText(Jogo.getJogador2().getNome());
         jLabelJogada.setText(Integer.toString(rodada));
+        jLabelJogadaComputador.setVisible(false);
 
     }
 
@@ -57,6 +58,7 @@ public class Jogadas extends javax.swing.JFrame {
         jButtonJogar = new javax.swing.JButton();
         jLabelJogador1 = new javax.swing.JLabel();
         jLabelJogador2 = new javax.swing.JLabel();
+        jLabelJogadaComputador = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Jokenpó");
@@ -124,6 +126,11 @@ public class Jogadas extends javax.swing.JFrame {
 
         jComboBoxJogada.setFont(new java.awt.Font("Tempus Sans ITC", 0, 11)); // NOI18N
         jComboBoxJogada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Pedra", "Papel", "Tesoura" }));
+        jComboBoxJogada.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxJogadaItemStateChanged(evt);
+            }
+        });
 
         jButtonJogar.setFont(new java.awt.Font("Tempus Sans ITC", 0, 11)); // NOI18N
         jButtonJogar.setText("Jogar");
@@ -142,6 +149,9 @@ public class Jogadas extends javax.swing.JFrame {
         jLabelJogador2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelJogador2.setText("Jogador2");
 
+        jLabelJogadaComputador.setFont(new java.awt.Font("Tempus Sans ITC", 1, 10)); // NOI18N
+        jLabelJogadaComputador.setText("Computador jogou Pedra");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -155,7 +165,7 @@ public class Jogadas extends javax.swing.JFrame {
                         .addComponent(jComboBoxJogada, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonJogar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(36, 134, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabelJogador1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -171,20 +181,26 @@ public class Jogadas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelJogada, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(185, 185, 185)
+                .addComponent(jLabelJogadaComputador)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabelJogada))
-                .addGap(18, 18, 18)
+                .addGap(9, 9, 9)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jComboBoxJogada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonJogar))
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
+                .addComponent(jLabelJogadaComputador)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelJogador1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                     .addComponent(jLabelJogador2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -219,7 +235,8 @@ public class Jogadas extends javax.swing.JFrame {
     private void jButtonJogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonJogarActionPerformed
 
         if (rodada < 10) {
-            Jogo.getRodadas().add(new Rodada());
+            Jogo.getRodadas().add(new Rodada(rodada));
+            
             if (jComboBoxJogada.getSelectedIndex() == 0) {
                 JOptionPane.showMessageDialog(null, "Selecione uma opção para jogar", "Atenção!", JOptionPane.INFORMATION_MESSAGE);
             } else {
@@ -227,52 +244,53 @@ public class Jogadas extends javax.swing.JFrame {
                     case 1:
                         //Jogo.getRodadas().get(rodada-1).setJogada1(JogadaEnum.PEDRA);
                         //break;
-                        new Joga(JogadaEnum.PEDRA,Jogo.getJogador1());
+                        new Joga(JogadaEnum.PEDRA, Jogo.getJogador1()).Jogar();
                         break;
                     case 2:
-                        new Joga(JogadaEnum.PAPEL,Jogo.getJogador1());
+                        new Joga(JogadaEnum.PAPEL, Jogo.getJogador1()).Jogar();
                         break;
                     case 3:
-                        new Joga(JogadaEnum.TESOURA,Jogo.getJogador1());
+                        new Joga(JogadaEnum.TESOURA, Jogo.getJogador1()).Jogar();
                         break;
                 }
 
-                int jogadaComputador = random.nextInt(3) + 1;
-
-                switch (jogadaComputador) {
-                    case 1:
-                        Jogo.getRodadas().get(rodada-1).setJogada2(JogadaEnum.PEDRA);
-                        System.out.println("Computador Jogou Pedra");
-                        break;
-                    case 2:
-                        Jogo.getRodadas().get(rodada-1).setJogada2(JogadaEnum.PAPEL);
-                        System.out.println("Computador Jogou Papel");
-                        
-                        break;
-                    case 3:
-                        Jogo.getRodadas().get(rodada-1).setJogada2(JogadaEnum.TESOURA);
-                        System.out.println("Computador Jogou Tesoura");
-                        break;
-                }
-
-                Jogo.getRodadas().get(rodada-1).setGanhadorRodada(new CalcularGanhadorRodada(jogo,rodada - 1).calculaGanhador());
-                            
+                JogadaEnum jogadaComputador = new Joga(Jogo.getJogador2()).Jogar();
                 
-                if(Jogo.getRodadas().get(rodada-1).getGanhadorRodada()!=null){
-                                    System.out.println("Ganhador da Rodada: "+Jogo.getRodadas().get(rodada-1).getGanhadorRodada().getNome());
+                jLabelJogadaComputador.setText("Computador jogou "+ jogadaComputador.toString());
+                jLabelJogadaComputador.setVisible(true);
+                
+                Jogo.getRodadas().get(rodada - 1).setGanhadorRodada(new CalculoGanhadorRodada(jogo, rodada - 1).calculaGanhador());
+
+                if (Jogo.getRodadas().get(rodada - 1).getGanhadorRodada() != null) {
+                    System.out.println("Ganhador da Rodada: " + Jogo.getRodadas().get(rodada - 1).getGanhadorRodada().getNome());
+
+                } else {
+                    System.out.println("Rodada deu Empate.");
 
                 }
 
-                rodada = rodada+1;
+                rodada = rodada + 1;
 
-                jLabelPontos1.setText(Integer.toString(jogo.getPontosJogador(jogo.getJogador1())));
-                jLabelPontos2.setText(Integer.toString(jogo.getPontosJogador(jogo.getJogador2())));
+                jLabelPontos1.setText(Integer.toString(jogo.getPontosJogador(Jogo.getJogador1())));
+                jLabelPontos2.setText(Integer.toString(jogo.getPontosJogador(Jogo.getJogador2())));
                 jLabelJogada.setText(Integer.toString(rodada));
-
+                jComboBoxJogada.setSelectedIndex(0);
             }
+        }else{
+            FimJogo fimJogo  = new FimJogo();
+            fimJogo.setVisible(true);
+            dispose();
         }
 
     }//GEN-LAST:event_jButtonJogarActionPerformed
+
+    private void jComboBoxJogadaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxJogadaItemStateChanged
+        
+        if(jComboBoxJogada.getSelectedIndex()!=0){
+            jLabelJogadaComputador.setVisible(false);
+        }
+        
+    }//GEN-LAST:event_jComboBoxJogadaItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -315,6 +333,7 @@ public class Jogadas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelJogada;
+    private javax.swing.JLabel jLabelJogadaComputador;
     private javax.swing.JLabel jLabelJogador1;
     private javax.swing.JLabel jLabelJogador2;
     private javax.swing.JLabel jLabelPontos1;

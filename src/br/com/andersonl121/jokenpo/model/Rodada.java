@@ -15,6 +15,10 @@ public class Rodada {
     private JogadaEnum jogada1;
     private JogadaEnum jogada2;
     private Jogador ganhadorRodada;
+    
+    public Rodada(int numeroRodada){
+        this.numeroRodada = numeroRodada;
+    }
 
     public int getNumeroRodada() {
         return numeroRodada;

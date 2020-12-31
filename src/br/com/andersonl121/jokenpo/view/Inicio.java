@@ -128,6 +128,7 @@ public class Inicio extends javax.swing.JFrame {
             Jogo jogo = new Jogo(new Jogador(jTextField1.getText()),new Jogador("Computador"));
             Jogadas jogadasScreen = new Jogadas(jogo);
             jogadasScreen.setVisible(true);
+            dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -13,23 +13,13 @@ import br.com.andersonl121.jokenpo.model.Rodada;
  *
  * @author Anderson
  */
-public class CalcularGanhadorJogo {
+public class CalculoGanhadorJogo {
 
-    private Jogo jogo;
     private int pontosJogador1 = 0;
     private int pontosJogador2 = 0;
-    
-    
-    public CalcularGanhadorJogo(Jogo jogo){
-        this.jogo = jogo;
-    }
 
-    public Jogo getJogo() {
-        return jogo;
-    }
+    public CalculoGanhadorJogo() {
 
-    public void setJogo(Jogo jogo) {
-        this.jogo = jogo;
     }
 
     public int getPontosJogador1() {
@@ -50,18 +40,25 @@ public class CalcularGanhadorJogo {
 
     public Jogador calculaGanhador() {
 
-        for (Rodada rodada : jogo.getRodadas()) {
-            if (rodada.getGanhadorRodada().equals(jogo.getJogador1())) {
-                pontosJogador1 = pontosJogador1+1;
-            } else if (rodada.getGanhadorRodada().equals(jogo.getJogador2())) {
-                pontosJogador2 = pontosJogador2+1;
+        Jogo.getRodadas().forEach((rodada) -> {
+
+            if (rodada.getGanhadorRodada() != null) {
+                if (rodada.getGanhadorRodada().equals(Jogo.getJogador1())) {
+                    pontosJogador1 = pontosJogador1 + 1;
+                } else if (rodada.getGanhadorRodada().equals(Jogo.getJogador2())) {
+                    pontosJogador2 = pontosJogador2 + 1;
+                }
+
             }
-        }
+        });
+
+        Jogo.setPtsJogador1(pontosJogador1);
+        Jogo.setPtsJogador2(pontosJogador2);
 
         if (pontosJogador1 > pontosJogador2) {
-            return jogo.getJogador1();
+            return Jogo.getJogador1();
         } else if (pontosJogador2 > pontosJogador1) {
-            return jogo.getJogador2();
+            return Jogo.getJogador2();
         }
 
         return null;

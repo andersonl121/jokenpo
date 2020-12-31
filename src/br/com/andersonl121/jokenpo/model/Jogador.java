@@ -5,6 +5,8 @@
  */
 package br.com.andersonl121.jokenpo.model;
 
+import java.util.Objects;
+
 /**
  *
  * @author Anderson
@@ -37,11 +39,14 @@ public class Jogador {
         
         final Jogador j =   (Jogador) o;
         
-        if(!this.nome.equals(j.nome)){
-            return false;
-        }
-        System.out.println("Its Equals");
-        return true;
+        return this.nome.equals(j.nome);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.nome);
+        return hash;
     }
     
     
