@@ -6,6 +6,7 @@
 package br.com.andersonl121.jokenpo.view;
 
 import br.com.andersonl121.jokenpo.controller.CalcularGanhadorRodada;
+import br.com.andersonl121.jokenpo.controller.Joga;
 import br.com.andersonl121.jokenpo.model.JogadaEnum;
 import br.com.andersonl121.jokenpo.model.Jogo;
 import br.com.andersonl121.jokenpo.model.Rodada;
@@ -218,19 +219,21 @@ public class Jogadas extends javax.swing.JFrame {
     private void jButtonJogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonJogarActionPerformed
 
         if (rodada < 10) {
-            jogo.getRodadas()[rodada-1] = new Rodada();
+            Jogo.getRodadas().add(new Rodada());
             if (jComboBoxJogada.getSelectedIndex() == 0) {
                 JOptionPane.showMessageDialog(null, "Selecione uma opção para jogar", "Atenção!", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 switch (jComboBoxJogada.getSelectedIndex()) {
                     case 1:
-                        jogo.getRodadas()[rodada-1].setJogada1(JogadaEnum.PEDRA);
+                        //Jogo.getRodadas().get(rodada-1).setJogada1(JogadaEnum.PEDRA);
+                        //break;
+                        new Joga(JogadaEnum.PEDRA,Jogo.getJogador1());
                         break;
                     case 2:
-                        jogo.getRodadas()[rodada-1].setJogada1(JogadaEnum.PAPEL);
+                        new Joga(JogadaEnum.PAPEL,Jogo.getJogador1());
                         break;
                     case 3:
-                        jogo.getRodadas()[rodada-1].setJogada1(JogadaEnum.TESOURA);
+                        new Joga(JogadaEnum.TESOURA,Jogo.getJogador1());
                         break;
                 }
 
@@ -238,25 +241,25 @@ public class Jogadas extends javax.swing.JFrame {
 
                 switch (jogadaComputador) {
                     case 1:
-                        jogo.getRodadas()[rodada-1].setJogada2(JogadaEnum.PEDRA);
+                        Jogo.getRodadas().get(rodada-1).setJogada2(JogadaEnum.PEDRA);
                         System.out.println("Computador Jogou Pedra");
                         break;
                     case 2:
-                        jogo.getRodadas()[rodada-1].setJogada2(JogadaEnum.PAPEL);
+                        Jogo.getRodadas().get(rodada-1).setJogada2(JogadaEnum.PAPEL);
                         System.out.println("Computador Jogou Papel");
                         
                         break;
                     case 3:
-                        jogo.getRodadas()[rodada-1].setJogada2(JogadaEnum.TESOURA);
+                        Jogo.getRodadas().get(rodada-1).setJogada2(JogadaEnum.TESOURA);
                         System.out.println("Computador Jogou Tesoura");
                         break;
                 }
 
-                jogo.getRodadas()[rodada - 1].setGanhadorRodada(new CalcularGanhadorRodada(jogo,rodada - 1).calculaGanhador());
+                Jogo.getRodadas().get(rodada-1).setGanhadorRodada(new CalcularGanhadorRodada(jogo,rodada - 1).calculaGanhador());
                             
                 
-                if(jogo.getRodadas()[rodada -1].getGanhadorRodada()!=null){
-                                    System.out.println("Ganhador da Rodada: "+jogo.getRodadas()[rodada -1].getGanhadorRodada().getNome());
+                if(Jogo.getRodadas().get(rodada-1).getGanhadorRodada()!=null){
+                                    System.out.println("Ganhador da Rodada: "+Jogo.getRodadas().get(rodada-1).getGanhadorRodada().getNome());
 
                 }
 

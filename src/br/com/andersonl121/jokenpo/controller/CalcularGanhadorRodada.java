@@ -34,37 +34,37 @@ public class CalcularGanhadorRodada {
     }
 
     public Jogador calculaGanhador() {
-        if (jogo.getRodadas()[this.rodada].getJogada1() == JogadaEnum.PEDRA && jogo.getRodadas()[this.rodada].getJogada2() == JogadaEnum.TESOURA) {
+        if (Jogo.getRodadas().get(this.rodada).getJogada1() == JogadaEnum.PEDRA && Jogo.getRodadas().get(this.rodada).getJogada2() == JogadaEnum.TESOURA) {
 
             return jogo.getJogador1();
 
         }
 
-        if (jogo.getRodadas()[this.rodada].getJogada1() == JogadaEnum.TESOURA && jogo.getRodadas()[this.rodada].getJogada2() == JogadaEnum.PAPEL) {
+        if (Jogo.getRodadas().get(this.rodada).getJogada1() == JogadaEnum.TESOURA && Jogo.getRodadas().get(this.rodada).getJogada2() == JogadaEnum.PAPEL) {
 
             return jogo.getJogador1();
 
         }
 
-        if (jogo.getRodadas()[this.rodada].getJogada1() == JogadaEnum.PAPEL && jogo.getRodadas()[this.rodada].getJogada2() == JogadaEnum.PEDRA) {
+        if (Jogo.getRodadas().get(this.rodada).getJogada1() == JogadaEnum.PAPEL && Jogo.getRodadas().get(this.rodada).getJogada2() == JogadaEnum.PEDRA) {
 
             return jogo.getJogador1();
 
         }
 
-        if (jogo.getRodadas()[this.rodada].getJogada2() == JogadaEnum.PEDRA && jogo.getRodadas()[this.rodada].getJogada1() == JogadaEnum.TESOURA) {
+        if (Jogo.getRodadas().get(this.rodada).getJogada2() == JogadaEnum.PEDRA && Jogo.getRodadas().get(this.rodada).getJogada1() == JogadaEnum.TESOURA) {
 
             return jogo.getJogador2();
 
         }
 
-        if (jogo.getRodadas()[this.rodada].getJogada2() == JogadaEnum.TESOURA && jogo.getRodadas()[this.rodada].getJogada1() == JogadaEnum.PAPEL) {
+        if (Jogo.getRodadas().get(this.rodada).getJogada2() == JogadaEnum.TESOURA && Jogo.getRodadas().get(this.rodada).getJogada1() == JogadaEnum.PAPEL) {
 
             return jogo.getJogador2();
 
         }
 
-        if (jogo.getRodadas()[this.rodada].getJogada2() == JogadaEnum.PAPEL && jogo.getRodadas()[this.rodada].getJogada1() == JogadaEnum.PEDRA) {
+        if (Jogo.getRodadas().get(this.rodada).getJogada2() == JogadaEnum.PAPEL && Jogo.getRodadas().get(this.rodada).getJogada1() == JogadaEnum.PEDRA) {
 
             return jogo.getJogador2();
 

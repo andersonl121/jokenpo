@@ -26,12 +26,13 @@ public class Jokenpo {
         
         //Faz a jogada por rodadas
         for(int i = 0; i<10;i++){
-            jogo.getRodadas()[i].setJogada1(JogadaEnum.PEDRA);
-            jogo.getRodadas()[i].setJogada2(JogadaEnum.PEDRA);
+            
+            Jogo.getRodadas().get(i).setJogada1(JogadaEnum.PEDRA);
+            Jogo.getRodadas().get(i).setJogada2(JogadaEnum.PEDRA);
             
             //Calcula ganhador da rodada
-            jogo.getRodadas()[i].setGanhadorRodada(new CalcularGanhadorRodada(jogo,i).calculaGanhador());
-            System.out.println("Ganhador da Rodada: "+jogo.getRodadas()[i].getGanhadorRodada().getNome());
+            Jogo.getRodadas().get(i).setGanhadorRodada(new CalcularGanhadorRodada(jogo,i).calculaGanhador());
+            System.out.println("Ganhador da Rodada: "+Jogo.getRodadas().get(i).getGanhadorRodada().getNome());
         }
         
         //Calcula ganhador do jogo

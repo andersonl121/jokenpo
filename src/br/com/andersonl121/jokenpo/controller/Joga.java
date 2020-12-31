@@ -2,6 +2,7 @@ package br.com.andersonl121.jokenpo.controller;
 
 import br.com.andersonl121.jokenpo.model.JogadaEnum;
 import br.com.andersonl121.jokenpo.model.Jogador;
+import br.com.andersonl121.jokenpo.model.Jogo;
 import java.util.Random;
 
 /*
@@ -13,19 +14,25 @@ import java.util.Random;
  *
  * @author Anderson
  */
-public final class Jogar {
+public final class Joga {
 
-    final private JogadaEnum jogada;
-    final private Jogador jogador;
+    private static JogadaEnum jogada;
+    private static Jogador jogador;
+    
+    
 
-    public Jogar(JogadaEnum jogada, Jogador jogador) {
-        this.jogada = jogada;
-        this.jogador = jogador;
+    public Joga(JogadaEnum jogada, Jogador jogador) {
+        Joga.jogada = jogada;
+        Joga.jogador = jogador;
     }
 
-    public Jogar(Jogador jogador) {
-        this.jogador = jogador;
-        this.jogada = gerarJogadaAleatoria();
+    public Joga(Jogador jogador) {
+        Joga.jogador = jogador;
+        Joga.jogada = gerarJogadaAleatoria();
+    }
+    
+    public void Jogar(){
+        Jogo.getRodadas().get(Jogo.getRodadas().size()-1);
     }
 
     public JogadaEnum gerarJogadaAleatoria() {

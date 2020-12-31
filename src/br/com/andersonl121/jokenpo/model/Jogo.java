@@ -24,19 +24,19 @@ public class Jogo {
 
     }
 
-    public Jogador getJogador1() {
+    public static Jogador getJogador1() {
         return jogador1;
     }
 
-    public void setJogador1(Jogador jogador1) {
+    public static void setJogador1(Jogador jogador1) {
         Jogo.jogador1 = jogador1;
     }
 
-    public Jogador getJogador2() {
+    public static Jogador getJogador2() {
         return jogador2;
     }
 
-    public void setJogador2(Jogador jogador2) {
+    public static void setJogador2(Jogador jogador2) {
         Jogo.jogador2 = jogador2;
     }
 
