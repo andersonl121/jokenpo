@@ -30,7 +30,8 @@ public class Jokenpo {
             jogo.getRodadas()[i].setJogada2(JogadaEnum.PEDRA);
             
             //Calcula ganhador da rodada
-            jogo.getRodadas()[i].setGanhadorRodada(new CalcularGanhadorRodada(jogo.getRodadas()[i]).calculaGanhador());
+            jogo.getRodadas()[i].setGanhadorRodada(new CalcularGanhadorRodada(jogo,i).calculaGanhador());
+            System.out.println("Ganhador da Rodada: "+jogo.getRodadas()[i].getGanhadorRodada().getNome());
         }
         
         //Calcula ganhador do jogo

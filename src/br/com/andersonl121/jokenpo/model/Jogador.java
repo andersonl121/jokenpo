@@ -35,12 +35,12 @@ public class Jogador {
             return false;
         }
         
-        final Jogador j=   (Jogador) o;
+        final Jogador j =   (Jogador) o;
         
-        if(this.nome != j.nome){
+        if(!this.nome.equals(j.nome)){
             return false;
         }
-        
+        System.out.println("Its Equals");
         return true;
     }
     

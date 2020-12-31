@@ -7,6 +7,7 @@ package br.com.andersonl121.jokenpo.controller;
 
 import br.com.andersonl121.jokenpo.model.JogadaEnum;
 import br.com.andersonl121.jokenpo.model.Jogador;
+import br.com.andersonl121.jokenpo.model.Jogo;
 import br.com.andersonl121.jokenpo.model.Rodada;
 
 /**
@@ -15,57 +16,60 @@ import br.com.andersonl121.jokenpo.model.Rodada;
  */
 public class CalcularGanhadorRodada {
 
-    Rodada rodada;
+    Jogo jogo;
+    int rodada;
 
-    public Rodada getRodada() {
-        return rodada;
+    public Jogo getJogo() {
+        return jogo;
     }
 
-    public void setRodada(Rodada rodada) {
-        this.rodada = rodada;
+    public void setJogo(Jogo jogo) {
+        this.jogo = jogo;
     }
 
-    public CalcularGanhadorRodada(Rodada rodada) {
+
+    public CalcularGanhadorRodada(Jogo jogo,int rodada) {
+        this.jogo = jogo;
         this.rodada = rodada;
     }
 
     public Jogador calculaGanhador() {
-        if (rodada.getJogada1() == JogadaEnum.PEDRA && rodada.getJogada2() == JogadaEnum.TESOURA) {
+        if (jogo.getRodadas()[this.rodada].getJogada1() == JogadaEnum.PEDRA && jogo.getRodadas()[this.rodada].getJogada2() == JogadaEnum.TESOURA) {
 
-            return rodada.getJogada1().getJogador();
-
-        }
-
-        if (rodada.getJogada1() == JogadaEnum.TESOURA && rodada.getJogada2() == JogadaEnum.PAPEL) {
-
-            return rodada.getJogada1().getJogador();
+            return jogo.getJogador1();
 
         }
 
-        if (rodada.getJogada1() == JogadaEnum.PAPEL && rodada.getJogada2() == JogadaEnum.PEDRA) {
+        if (jogo.getRodadas()[this.rodada].getJogada1() == JogadaEnum.TESOURA && jogo.getRodadas()[this.rodada].getJogada2() == JogadaEnum.PAPEL) {
 
-            return rodada.getJogada1().getJogador();
-
-        }
-
-        if (rodada.getJogada2() == JogadaEnum.PEDRA && rodada.getJogada1() == JogadaEnum.TESOURA) {
-
-            return rodada.getJogada2().getJogador();
+            return jogo.getJogador1();
 
         }
 
-        if (rodada.getJogada2() == JogadaEnum.TESOURA && rodada.getJogada1() == JogadaEnum.PAPEL) {
+        if (jogo.getRodadas()[this.rodada].getJogada1() == JogadaEnum.PAPEL && jogo.getRodadas()[this.rodada].getJogada2() == JogadaEnum.PEDRA) {
 
-            return rodada.getJogada2().getJogador();
-
-        }
-
-        if (rodada.getJogada2() == JogadaEnum.PAPEL && rodada.getJogada1() == JogadaEnum.PEDRA) {
-
-            return rodada.getJogada2().getJogador();
+            return jogo.getJogador1();
 
         }
 
+        if (jogo.getRodadas()[this.rodada].getJogada2() == JogadaEnum.PEDRA && jogo.getRodadas()[this.rodada].getJogada1() == JogadaEnum.TESOURA) {
+
+            return jogo.getJogador2();
+
+        }
+
+        if (jogo.getRodadas()[this.rodada].getJogada2() == JogadaEnum.TESOURA && jogo.getRodadas()[this.rodada].getJogada1() == JogadaEnum.PAPEL) {
+
+            return jogo.getJogador2();
+
+        }
+
+        if (jogo.getRodadas()[this.rodada].getJogada2() == JogadaEnum.PAPEL && jogo.getRodadas()[this.rodada].getJogada1() == JogadaEnum.PEDRA) {
+
+            return jogo.getJogador2();
+
+        }
+        System.out.println("Returned null");
         return null;
     }
 

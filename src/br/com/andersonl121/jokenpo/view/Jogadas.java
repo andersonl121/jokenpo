@@ -239,16 +239,26 @@ public class Jogadas extends javax.swing.JFrame {
                 switch (jogadaComputador) {
                     case 1:
                         jogo.getRodadas()[rodada-1].setJogada2(JogadaEnum.PEDRA);
+                        System.out.println("Computador Jogou Pedra");
                         break;
                     case 2:
                         jogo.getRodadas()[rodada-1].setJogada2(JogadaEnum.PAPEL);
+                        System.out.println("Computador Jogou Papel");
+                        
                         break;
                     case 3:
                         jogo.getRodadas()[rodada-1].setJogada2(JogadaEnum.TESOURA);
+                        System.out.println("Computador Jogou Tesoura");
                         break;
                 }
 
-                jogo.getRodadas()[rodada - 1].setGanhadorRodada(new CalcularGanhadorRodada(jogo.getRodadas()[rodada - 1]).calculaGanhador());
+                jogo.getRodadas()[rodada - 1].setGanhadorRodada(new CalcularGanhadorRodada(jogo,rodada - 1).calculaGanhador());
+                            
+                
+                if(jogo.getRodadas()[rodada -1].getGanhadorRodada()!=null){
+                                    System.out.println("Ganhador da Rodada: "+jogo.getRodadas()[rodada -1].getGanhadorRodada().getNome());
+
+                }
 
                 rodada = rodada+1;
 

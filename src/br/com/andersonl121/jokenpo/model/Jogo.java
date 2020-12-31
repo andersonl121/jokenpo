@@ -5,19 +5,22 @@
  */
 package br.com.andersonl121.jokenpo.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Anderson
  */
 public class Jogo {
 
-    private Jogador jogador1;
-    private Jogador jogador2;
-    private Rodada[] rodadas = new Rodada[10];
+    private static Jogador jogador1;
+    private static Jogador jogador2;
+    private static List<Rodada> rodadas = new ArrayList<Rodada>();
 
     public Jogo(Jogador jogador1, Jogador jogador2) {
-        this.jogador1 = jogador1;
-        this.jogador2 = jogador2;
+        Jogo.jogador1 = jogador1;
+        Jogo.jogador2 = jogador2;
 
     }
 
@@ -26,7 +29,7 @@ public class Jogo {
     }
 
     public void setJogador1(Jogador jogador1) {
-        this.jogador1 = jogador1;
+        Jogo.jogador1 = jogador1;
     }
 
     public Jogador getJogador2() {
@@ -34,16 +37,18 @@ public class Jogo {
     }
 
     public void setJogador2(Jogador jogador2) {
-        this.jogador2 = jogador2;
+        Jogo.jogador2 = jogador2;
     }
 
-    public Rodada[] getRodadas() {
+    public static List<Rodada> getRodadas() {
         return rodadas;
     }
 
-    public void setRodadas(Rodada[] rodadas) {
-        this.rodadas = rodadas;
+    public static void setRodadas(List<Rodada> rodadas) {
+        Jogo.rodadas = rodadas;
     }
+
+    
 
     public int getPontosJogador(Jogador jogador) {
         int pontos = 0;

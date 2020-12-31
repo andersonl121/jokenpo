@@ -10,26 +10,20 @@ package br.com.andersonl121.jokenpo.model;
  * @author Anderson
  */
 public enum JogadaEnum {
-    
-    PEDRA(0),PAPEL(1),TESOURA(2);
-    
+
+    PEDRA(0), PAPEL(1), TESOURA(2);
+
     private final int valor;
-    private Jogador jogador;
-    
-    JogadaEnum(int valor){
-       this.valor = valor;
+
+    JogadaEnum(int valor) {
+        this.valor = valor;
+
     }
-    
-    public int getValor(){
+
+    public int getValor() {
         return this.valor;
     }
 
-    public Jogador getJogador() {
-        return jogador;
-    }
+    
 
-    public void setJogador(Jogador jogador) {
-        this.jogador = jogador;
-    }
-       
 }
